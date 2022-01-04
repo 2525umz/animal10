@@ -1,0 +1,24 @@
+</div>
+<div class="row">
+  <div class="col-lg-3">
+  </div>
+<h3>検索結果</h3>
+</div>
+
+<div class="row">
+  <div class="col-lg-3">
+  </div>
+<div class="col-lg-8 d-flex align-content-start flex-wrap">
+  <br>
+<% @results.each do |genre| %>
+<% genre.items.each do |item| %>
+  <%= link_to item_path(item.id) do %>
+  <%= attachment_image_tag item, :image, size: "160x150", fallback: "no_image.jpg" %><br>
+  <% end %></br>
+<br><%= item.name %>
+￥<%= item.price %>
+<% end %>
+<% end %>
+</div>
+</div>
+</div>

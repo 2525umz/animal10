@@ -1,0 +1,36 @@
+</div>
+<br><br>
+<div class="row" >
+	<div class="col-lg-1">
+	</div>
+		<h3 style="width: 180px;background-color: #e8e8e8; "><strong>注文履歴一覧</strong></h3>
+</div>
+<br>
+
+<div class="row">
+	<div class="col-lg-1">
+	</div>
+<div class="col-lg-9">
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th style="width: 180px;background-color: #e8e8e8; ">注文日</th>
+			<th style="width: 180px;background-color: #e8e8e8; ">配送先</th>
+			<th style="width: 180px;background-color: #e8e8e8; ">注文商品</th>
+			<th style="width: 180px;background-color: #e8e8e8; ">支払料金</th>
+			<th style="width: 180px;background-color: #e8e8e8; ">ステータス</th>
+			<th style="width: 180px;background-color: #e8e8e8; ">注文詳細</th>
+		</tr>
+	  <tr>
+		<% @orders.each do |order|%>
+			<td ><%= order.created_at.strftime('%Y/%m/%d') %></td>
+			<td >〒<%= order.postal_code %><%= order.address %>	<%= order.name %></td>
+			<td> 	<% order.order_details.each do |order_detail| %><%= order_detail.item.name %>	<% end %>	</td>
+		  <td><%= order.total_payment.to_s(:delimited, delimiter: ',') %></td>
+			<td ><%= order.status_i18n %></td>
+			<td><%= link_to "表示する", order_path(order) %><td>
+	  </tr>
+		<% end %>
+</thead>
+</table>
+	</div>

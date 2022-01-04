@@ -1,0 +1,71 @@
+</div>
+
+<br><br>
+<div class="row">
+	<div class="col-lg-2">
+	</div>
+	<div class="col-xs-5">
+　  <%= attachment_image_tag @item, :image, size: "210x200", fallback: "no_image.jpg" %>
+
+  </div>
+  <div class="col-xs-5">
+    <h3><%= @item.name %></h3>
+    <br><th><%= @item.introduction %>
+    <br><br><br>
+    ¥<%= ((@item.price*1.1).floor).to_s(:delimited, delimiter: ',') %> (税込)
+    <br>
+     <% if @item.favorited_by?(current_customer) %>
+    <p>
+      <%= link_to item_favorites_path(@item), method: :delete do %>
+        ♥<%= @item.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to item_favorites_path(@item), method: :post do %>
+        ♡<%= @item.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+   	<span>　　</span>
+<% if !@item.is_active %>
+　　 　	<%= form_with model: @cart_item, url:cart_items_path, method: :POST, local: true do |f| %>
+　　 　   <%= f.number_field :amount , placeholder: "個数選択", min: 1, max: 20 %>
+		      <%= f.hidden_field :item_id, :value => @item.id %>
+		      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+		      <p><%= f.submit "カートに入れる",  class:"btn-success	" %></p>
+		    <% end %>
+<% else %>
+		    <%#= is_active.true %>
+	 	    <h4>売り切れ中</h4>
+		   <%# end %>
+<% end %>
+	</div>
+</div>
+
+<div class="row">
+  <div class="col-lg-2">
+  </div>
+  <% @item.post_comments.each do | post_comment | %>
+  <%= post_comment.customer.last_name %>
+  <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+   <% if post_comment.customer == current_customer %>
+  <%= link_to "削除", item_post_comment_path(post_comment.item_id, post_comment), method: :delete %>
+   <% end %>
+  <% end %>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-8">
+    </div>
+<div>
+</div>
+<div>
+  <p>コメント件数：<%= @item.post_comments.count %></p>
+<%= form_with(model:[@item, @post_comment], local: true) do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+  <%= f.submit "送信する" %>
+<% end %>
+</div>
+

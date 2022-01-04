@@ -1,0 +1,18 @@
+ja:
+  enums:
+    order_detail:
+      making_status:
+        making0: '製作不可'
+        making1: '製作待ち'
+        making2: '製作中'
+        making3: '製作完了'
+    order:
+      status:
+        status0: '入金待ち'
+        status1: '入金確認'
+        status2: '製作中'
+        status3: '発送準備中'
+        status4: '発送済み'
+      payment_method:
+        credit_card: 'クレジットカード'
+        transfer: '銀行振込'

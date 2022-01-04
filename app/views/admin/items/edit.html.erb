@@ -1,0 +1,42 @@
+</div>
+<br><br>
+<div class="row">
+  <div class="col-lg-2">
+  </div>
+　<h3 style="width: 120px;background-color: #e8e8e8; ">商品編集</h3>
+</div>
+<br>
+<div class="row">
+  <div class="col-lg-4">
+    </div>
+ <div class="col-xs-8">
+  <table class="new-form-table">
+    <tbody>
+    <%= form_for(@item, url: admin_item_path(@item.id)) do |f| %>
+    <div class="col-xs-4"><%= f.attachment_field :image %></div>
+    <tr>
+    <th>商品名</th> <td><%= f.text_field :name, class: "control" %></td>
+    </tr>
+
+    <tr>
+    <th>商品説明</th><td><%= f.text_area :introduction, class: "control" %></td></tr>
+    <tr>
+    <th>ジャンル</th>
+    <td> <%= f.collection_select :genre_id, Genre.all ,:id, :name, include_blank: "--選択してください--" %></td>
+    </tr>
+    <tr>
+    <th>税抜価格</th>
+    <td><%= f.text_field :price, class: "form-control" %></td></tr>
+    <tr>
+    <th>販売ステータス</th>
+    <td><%= f.select :is_active, [["販売中","false"], ["販売不可","true"]], include_blank: "--選択してください--" %></td>
+    </tr>
+</tbody>
+</table>
+
+<div class="text-right">
+  <%= f.submit "変更を保存" ,class: "btn btn-success" %>
+  <% end %>
+</div>
+</div>
+</div>

@@ -1,0 +1,48 @@
+</div>
+
+<div class="row">
+<br><br><br><br><br>
+</div>
+<div class="row">
+ <div class="col-lg-2">
+ </div>
+<h3 style="margin: 20px 0;">商品一覧(全<%= @items.count %>件)</h3>
+ <div class="col-lg-4">
+  </div>
+<h3>商品検索</h3>
+</div>
+<div class="row">
+ <div class="col-lg-8">
+ </div>
+<%= search_form_for @q, url: search_genres_path do |f| %>
+  <%= f.label :name_cont, '年齢' %>
+  <%= f.search_field :name_cont %>
+  <br>
+  <%= f.submit '検索' %>
+<% end %>
+</div>
+<br>
+<div class="row">
+  <div class="col-lg-2">
+  </div>
+  <div class="col-lg-8 d-flex align-content-start flex-wrap">
+  <% @items.each do |item| %>
+  <div class="d-inline-box">
+   <%= link_to item_path(item.id) do %>
+   <%= attachment_image_tag item, :image, size: "160x150", fallback: "no_image.jpg" %>
+    <% end %><br>
+     <%= item.name %><br>
+     ￥<%= item.price %>
+<p><%= link_to "#{item.post_comments.count} コメント", item_path(item.id) %></p>
+  </div>
+  <% end %>
+  </div>
+  <div class="col-lg-2">
+  </div>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+     </div>
+  <%= paginate @items %>
+  </div>
+</div>

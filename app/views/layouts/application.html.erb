@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Animal</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <div class="row">
+  <br><br><br><br>
+  </div>
+
+
+   <div class="row">
+   <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="ribbon4">animal</i></h1>
+    <div class="col-lg-3">
+      <br><br>
+    </div>
+
+  <body>
+
+    <% if customer_signed_in? %>
+
+    <li id="youkoso">ようこそ、<%= current_customer.last_name %>さん！</li>
+    <th> <%= link_to items_path do %><i class="box14">商品一覧</i><% end %></th>
+    <th> <%= link_to customers_path do %><i class="box14">マイページ </i><% end %></th>
+    <th> <%= link_to cart_items_path do %><i class="box14"> カート</i><% end %></th>
+    <th> <%= link_to  destroy_customer_session_path, method: :delete  do %> <i class="box14"> ログアウト </i><% end %></th>
+
+    <% elsif admin_signed_in? %>
+
+    <li> <%= link_to"ジャンル一覧",admin_genres_path %> </li>
+    <li> <%= link_to"商品一覧", admin_items_path %> </li>
+    <li> <%= link_to"顧客一覧", admin_customers_path %> </li>
+    <li> <%= link_to"注文一覧", admin_root_path %></li>
+     <li> <%= link_to"ログアウト", destroy_admin_session_path, method: :delete %> </li>
+
+    <% else %>
+
+    <li><%= link_to "ホーム", "/" %></li>
+    <li><%= link_to "商品紹介", items_path %></li>
+    <li> <%= link_to "ログイン", new_customer_session_path %> </li>
+    <li> <%= link_to "新規登録", new_customer_registration_path %> </li>
+    <li> <%= link_to "アバウト", about_path %></li>
+    <% end %>
+  <%= yield %>
+  </div>
+  </body>
+</html>
