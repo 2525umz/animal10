@@ -1,4 +1,4 @@
-#Toy box
+#Animal
 
 ## サイト概要
 　子ども向け商品通販サイト。
@@ -39,7 +39,8 @@ https://docs.google.com/spreadsheets/d/1VkFmOfXs2coWrxUWHYlNssDF9GoUD8Rbp0kazX1k
 - IDE：Cloud9
 -
 ## 使用素材
-　使用検討中
+　イラストや
+　O-dan
 
 hoge
 hoge
