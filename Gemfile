@@ -69,7 +69,10 @@ gem "enum_help"
 gem 'kaminari'
 gem 'ransack'
 gem 'rails-i18n'
-gem 'dotenv-rails'
 gem 'rspec-rails', '~> 4.0.0'
 gem 'factory_bot_rails'
 gem 'faker'
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
